@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+{% if posts %}
+{% for post in posts %}
+    <div class="card mb-5" style="max-width: 500px;">
+        <img src="{{ post.thumbnail.url }}"
+             class="card-img-top" alt="Изображение поста">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.content|truncatechars:150 }}
+            </p>
+            <span class="me-3 text-muted d-block">Дата публикации: {{ post.created_at }}</span>
+            <span class="me-3 text-muted">Категория: {{ post.category.title }}</span>
+        </div>
+        <div class="card-footer text-muted d-flex align-items-center">
+            <span class="me-3"><button class="btn py-1 px-0 like-button" data-post-id="{{ post.id }}"><i class="fa-regular fa-heart"></i> 50</button></span>
+            <span class="me-3"><i class="fa-regular fa-comment"></i> 25</span>
+            <span class="me-3"><i class="fa-regular fa-eye"></i> {{ post.views }}</span>
+            <span class="me-3">Автор: {{ post.author.username }}</span>
+            <a href="{{ post.get_absolute_url }}" class="btn btn-outline-secondary d-inline-block ms-auto me-0">Читать</a>
+        </div>
+    </div>
+{% endfor %}
+{% else %}
+<h3 class="text-muted text-center">Постов в этой категории не найдено</h3>
+{% endif %}
+
+{% endblock content %}

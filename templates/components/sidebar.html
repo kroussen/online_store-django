@@ -1,0 +1,11 @@
+<h4 class="text-muted text-center">Категории</h4>
+<ul class="list-group list-group-flush">
+    {% for category in categories %}
+        {% if category.posts.all %}
+        <li class="list-group-item">
+            <a href="{{ category.get_absolute_url }}" class="text-decoration-none text-dark">{{ category.title }}</a>
+            <span class="text-muted">({{ category.posts.count }})</span>
+        </li>
+        {% endif %}
+    {% endfor %}
+</ul>

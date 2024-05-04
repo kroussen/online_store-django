@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример поста</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-8 col-12 mx-auto offset-md-2 d-flex flex-column align-items-center">
+{% for post in posts %}
+            <div class="card mb-5" style="max-width: 500px;">
+                <img src="{{ post.thumbnail.url }}"
+                     class="card-img-top" alt="Изображение поста">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">{{post.content}}
+                    </p>
+                    <span class="me-3 text-muted text-end">Дата публикации: {{post.created_at}}</span>
+                    <span class="me-3 text-muted">Категория: Факты</span>
+                </div>
+                <div class="card-footer text-muted d-flex align-items-center">
+                    <span class="me-3"><button class="btn py-1 px-0"><i
+                            class="fa-regular fa-heart"></i> 50</button></span>
+                    <span class="me-3"><i class="fa-regular fa-comment"></i> 25</span>
+                    <span class="me-3"><i class="fa-regular fa-eye"></i> {{post.views}}</span>
+                    <span class="me-3">Автор: {{post.author.username}}</span>
+                    <a href="#" class="btn btn-outline-secondary d-inline-block ms-auto me-0">Читать</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-4 d-none d-md-block mx-auto offset-md-2">
+            fdsfsd
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://kit.fontawesome.com/8fadce0725.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
